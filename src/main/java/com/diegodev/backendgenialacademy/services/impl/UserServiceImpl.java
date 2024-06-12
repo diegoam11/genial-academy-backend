@@ -1,6 +1,8 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
+import com.diegodev.backendgenialacademy.dtos.UniversityDTO;
 import com.diegodev.backendgenialacademy.dtos.UserDTO;
+import com.diegodev.backendgenialacademy.entities.UniversityEntity;
 import com.diegodev.backendgenialacademy.entities.UserEntity;
 import com.diegodev.backendgenialacademy.repositories.UserRepository;
 import com.diegodev.backendgenialacademy.services.UserService;

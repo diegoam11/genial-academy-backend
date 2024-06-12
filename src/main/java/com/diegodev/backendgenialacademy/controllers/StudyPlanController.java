@@ -1,7 +1,6 @@
 package com.diegodev.backendgenialacademy.controllers;
 
 import com.diegodev.backendgenialacademy.dtos.StudyPlanDTO;
-import com.diegodev.backendgenialacademy.entities.StudyPlanEntity;
 import com.diegodev.backendgenialacademy.services.StudyPlanService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,5 @@
 package com.diegodev.backendgenialacademy.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +23,10 @@ public class UniversityEntity {
     private String type;
     @Column
     private String website;
-    @JsonIgnore
+    @Column
+    private String imgUrl;
     @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudyPlanEntity> studyPlans;
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CareerEntity> careers;
 }

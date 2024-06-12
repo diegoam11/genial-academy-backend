@@ -5,6 +5,8 @@ import com.diegodev.backendgenialacademy.entities.UniversityEntity;
 import com.diegodev.backendgenialacademy.services.UniversityService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/universities")
 public class UniversityController {
@@ -17,6 +19,16 @@ public class UniversityController {
 
     @PostMapping("/create")
     public UniversityEntity createUniversity(@RequestBody UniversityDTO universityDTO) {
-        return universityService.createUniversity(universityDTO);
+        return universityService.create(universityDTO);
+    }
+
+    @GetMapping("/findById/{id}")
+    public UniversityEntity createUniversity(@PathVariable Long id) {
+        return universityService.findById(id);
+    }
+
+    @GetMapping("/findAll")
+    public List<UniversityDTO> createUniversity() {
+        return universityService.findAll();
     }
 }

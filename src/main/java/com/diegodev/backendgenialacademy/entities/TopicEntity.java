@@ -13,6 +13,4 @@ public class TopicEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "topic_id")
     private Long topicId;
-
-    
 }
