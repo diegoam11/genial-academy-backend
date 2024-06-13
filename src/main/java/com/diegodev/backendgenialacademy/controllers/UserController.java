@@ -2,6 +2,7 @@ package com.diegodev.backendgenialacademy.controllers;
 
 import com.diegodev.backendgenialacademy.dtos.UserDTO;
 import com.diegodev.backendgenialacademy.dtos.UserDetailDTO;
+import com.diegodev.backendgenialacademy.dtos.UserRequest;
 import com.diegodev.backendgenialacademy.entities.UserDetailEntity;
 import com.diegodev.backendgenialacademy.entities.UserEntity;
 import com.diegodev.backendgenialacademy.services.UserDetailService;
@@ -20,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public UserDTO createUser(@RequestBody UserEntity user) {
-        return userService.createUser(user);
+    public UserDTO createUser(@RequestBody UserRequest userRequest) {
+        return userService.createUser(userRequest);
     }
 
     @GetMapping("/findByUsername/{username}")

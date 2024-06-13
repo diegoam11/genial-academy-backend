@@ -1,7 +1,6 @@
 package com.diegodev.backendgenialacademy.controllers;
 
 import com.diegodev.backendgenialacademy.dtos.CourseDTO;
-import com.diegodev.backendgenialacademy.entities.CourseEntity;
 import com.diegodev.backendgenialacademy.services.CourseService;
 import org.springframework.web.bind.annotation.*;
 

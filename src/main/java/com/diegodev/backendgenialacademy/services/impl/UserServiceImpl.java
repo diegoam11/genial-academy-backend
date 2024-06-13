@@ -1,8 +1,7 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.UniversityDTO;
 import com.diegodev.backendgenialacademy.dtos.UserDTO;
-import com.diegodev.backendgenialacademy.entities.UniversityEntity;
+import com.diegodev.backendgenialacademy.dtos.UserRequest;
 import com.diegodev.backendgenialacademy.entities.UserEntity;
 import com.diegodev.backendgenialacademy.repositories.UserRepository;
 import com.diegodev.backendgenialacademy.services.UserService;
@@ -23,22 +22,32 @@ public class UserServiceImpl implements UserService {
         UserEntity userFound = userRepository.findByUsername(username);
         return new UserDTO(
                 userFound.getUserId(),
-                userFound.getUsername(),
                 userFound.getName(),
                 userFound.getLastname(),
+                userFound.getUsername(),
                 userFound.getEmail()
         );
     }
 
     @Override
-    public UserDTO createUser(UserEntity user) {
-        UserEntity savedUser = userRepository.save(user);
+    public UserDTO createUser(UserRequest userRequest) {
+        UserEntity savedUser = userRepository.save(mapReqToEntity(userRequest));
         return new UserDTO(
                 savedUser.getUserId(),
-                savedUser.getUsername(),
                 savedUser.getName(),
                 savedUser.getLastname(),
+                savedUser.getUsername(),
                 savedUser.getEmail()
         );
+    }
+
+    public UserEntity mapReqToEntity(UserRequest userRequest) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(userRequest.name());
+        userEntity.setLastname(userRequest.lastname());
+        userEntity.setUsername(userRequest.username());
+        userEntity.setEmail(userRequest.email());
+        userEntity.setPassword(userRequest.password());
+        return userEntity;
     }
 }

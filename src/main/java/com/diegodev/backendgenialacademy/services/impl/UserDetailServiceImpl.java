@@ -1,5 +1,6 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
+import com.diegodev.backendgenialacademy.dtos.UserDTO;
 import com.diegodev.backendgenialacademy.dtos.UserDetailDTO;
 import com.diegodev.backendgenialacademy.entities.DistrictEntity;
 import com.diegodev.backendgenialacademy.entities.UserDetailEntity;
@@ -27,11 +28,6 @@ public class UserDetailServiceImpl implements UserDetailService {
 
     @Override
     public UserDetailEntity addDetail(UserDetailDTO userDetailDTO) {
-        UserDetailEntity userDetailEntity = new UserDetailEntity();
-        UserEntity userEntity = userRepository.findById(userDetailDTO.userId()).orElseThrow();
-        DistrictEntity districtEntity = 
-
-        userDetailEntity.setUser(userEntity);
-        userDetailEntity.setPhone();
+        return null;
     }
 }

@@ -13,4 +13,9 @@ public class TopicEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "topic_id")
     private Long topicId;
+    @Column
+    private String name;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private CourseEntity course;
 }
