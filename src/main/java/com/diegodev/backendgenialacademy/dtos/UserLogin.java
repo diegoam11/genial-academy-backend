@@ -1,4 +1,6 @@
 package com.diegodev.backendgenialacademy.dtos;
 
-public record UserLogin() {
-}
+public record UserLogin(
+        String username,
+        String password
+) { }

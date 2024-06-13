@@ -1,8 +1,10 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
 import com.diegodev.backendgenialacademy.dtos.UserDTO;
+import com.diegodev.backendgenialacademy.dtos.UserLogin;
 import com.diegodev.backendgenialacademy.dtos.UserRequest;
 import com.diegodev.backendgenialacademy.entities.UserEntity;
+import com.diegodev.backendgenialacademy.exceptions.AuthenticationException;
 import com.diegodev.backendgenialacademy.repositories.UserRepository;
 import com.diegodev.backendgenialacademy.services.UserService;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,16 @@ public class UserServiceImpl implements UserService {
                 savedUser.getEmail()
         );
     }
+
+    @Override
+    public UserLogin userLogin(UserLogin userLogin) {
+        UserEntity userEntity = userRepository.findByUsername(userLogin.username());
+        if (userEntity == null || !userEntity.getPassword().equals(userLogin.password())) {
+            throw new AuthenticationException("Invalid username or password");
+        }
+        return userLogin;
+    }
+
 
     public UserEntity mapReqToEntity(UserRequest userRequest) {
         UserEntity userEntity = new UserEntity();
