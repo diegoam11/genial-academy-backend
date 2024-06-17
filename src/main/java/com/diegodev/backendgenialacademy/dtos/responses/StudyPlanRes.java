@@ -1,8 +1,8 @@
-package com.diegodev.backendgenialacademy.dtos;
+package com.diegodev.backendgenialacademy.dtos.responses;
 
 import java.util.Date;
 
-public record StudyPlanDTO(
+public record StudyPlanRes(
         String name,
         Date validUntil,
         Long universityId

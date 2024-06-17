@@ -1,7 +1,7 @@
-package com.diegodev.backendgenialacademy.dtos;
+package com.diegodev.backendgenialacademy.dtos.responses;
 
-public record UniversityDTO (
-        Long universityId,
+public record UniversityRes(
+        Long id,
         String name,
         String acronym,
         String type,

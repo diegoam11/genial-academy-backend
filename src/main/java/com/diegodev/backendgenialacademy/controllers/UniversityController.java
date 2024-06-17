@@ -1,7 +1,7 @@
 package com.diegodev.backendgenialacademy.controllers;
 
-import com.diegodev.backendgenialacademy.dtos.UniversityDTO;
-import com.diegodev.backendgenialacademy.entities.UniversityEntity;
+import com.diegodev.backendgenialacademy.dtos.requests.UniversityReq;
+import com.diegodev.backendgenialacademy.dtos.responses.UniversityRes;
 import com.diegodev.backendgenialacademy.services.UniversityService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +18,17 @@ public class UniversityController {
     }
 
     @PostMapping("/create")
-    public UniversityEntity createUniversity(@RequestBody UniversityDTO universityDTO) {
-        return universityService.create(universityDTO);
+    public UniversityRes create(@RequestBody UniversityReq universityReq) {
+        return universityService.create(universityReq);
     }
 
     @GetMapping("/findById/{id}")
-    public UniversityEntity createUniversity(@PathVariable Long id) {
+    public UniversityRes findById(@PathVariable Long id) {
         return universityService.findById(id);
     }
 
     @GetMapping("/findAll")
-    public List<UniversityDTO> createUniversity() {
+    public List<UniversityRes> findAll() {
         return universityService.findAll();
     }
 }

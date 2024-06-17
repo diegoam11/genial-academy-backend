@@ -13,8 +13,7 @@ import java.util.List;
 public class UniversityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "university_id")
-    private Long universityId;
+    private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -29,4 +28,6 @@ public class UniversityEntity {
     private List<StudyPlanEntity> studyPlans;
     @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CareerEntity> careers;
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AreaEntity> areas;
 }

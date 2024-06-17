@@ -15,8 +15,7 @@ import java.util.List;
 public class ProvinceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "province_id")
-    private Long provinceId;
+    private Long id;
     @Column
     private String name;
     @JsonIgnore

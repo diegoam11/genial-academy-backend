@@ -11,10 +11,11 @@ import lombok.Setter;
 public class CareerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "career_id")
-    private Long careerId;
+    private Long id;
     @Column
     private String name;
+    @Column
+    private String acronym;
     @ManyToOne
     @JoinColumn(name = "university_id", nullable = false)
     private UniversityEntity university;

@@ -1,6 +1,6 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.StudyPlanDTO;
+import com.diegodev.backendgenialacademy.dtos.responses.StudyPlanRes;
 import com.diegodev.backendgenialacademy.entities.StudyPlanEntity;
 import com.diegodev.backendgenialacademy.entities.UniversityEntity;
 import com.diegodev.backendgenialacademy.repositories.StudyPlanRepository;
@@ -20,20 +20,20 @@ public class StudyPlanServiceImpl implements StudyPlanService {
     }
 
     @Override
-    public StudyPlanDTO createStudyPlan(StudyPlanDTO studyPlanDTO) {
+    public StudyPlanRes createStudyPlan(StudyPlanRes studyPlanRes) {
         StudyPlanEntity studyPlanEntity = new StudyPlanEntity();
-        studyPlanEntity.setName(studyPlanDTO.name());
-        studyPlanEntity.setValidUntil(studyPlanDTO.validUntil());
-        UniversityEntity university = universityRepository.findById(studyPlanDTO.universityId()).orElseThrow();
+        studyPlanEntity.setName(studyPlanRes.name());
+        studyPlanEntity.setValidUntil(studyPlanRes.validUntil());
+        UniversityEntity university = universityRepository.findById(studyPlanRes.universityId()).orElseThrow();
         studyPlanEntity.setUniversity(university);
         return mapToDTO(studyPlanRepository.save(studyPlanEntity));
     }
 
-    public StudyPlanDTO mapToDTO(StudyPlanEntity entity) {
-        return new StudyPlanDTO(
+    public StudyPlanRes mapToDTO(StudyPlanEntity entity) {
+        return new StudyPlanRes(
                 entity.getName(),
                 entity.getValidUntil(),
-                entity.getUniversity().getUniversityId()
+                entity.getUniversity().getId()
         );
     }
 }

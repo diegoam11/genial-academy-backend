@@ -19,6 +19,6 @@ public class ProvinceServiceImpl implements ProvinceService {
 
     @Override
     public List<ProvinceEntity> getAllByDeparmentId(Long departmentId) {
-        return provinceRepository.findAllByDepartment_DepartmentId(departmentId);
+        return provinceRepository.findAllByDepartmentId(departmentId);
     }
 }

@@ -13,8 +13,7 @@ import lombok.Setter;
 public class OptionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "option_id")
-    private Long optionId;
+    private Long id;
     @Column(name = "option_text")
     private String optionText;
     @Column

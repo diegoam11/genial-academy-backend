@@ -1,6 +1,6 @@
-package com.diegodev.backendgenialacademy.dtos;
+package com.diegodev.backendgenialacademy.dtos.responses;
 
-public record UserDetailDTO(
+public record UserDetailRes(
         String phone,
         String typeSchool,
         Long districtId,

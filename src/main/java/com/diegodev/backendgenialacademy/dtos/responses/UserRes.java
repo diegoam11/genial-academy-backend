@@ -1,6 +1,6 @@
-package com.diegodev.backendgenialacademy.dtos;
+package com.diegodev.backendgenialacademy.dtos.responses;
 
-public record UserDTO(
+public record UserRes(
         Long id,
         String name,
         String lastname,

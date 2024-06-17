@@ -14,8 +14,7 @@ import java.util.List;
 public class StudyPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "study_plan_id")
-    private Long studyPlanId;
+    private Long id;
     @Column
     private String name;
     @Column(name = "valid_until")

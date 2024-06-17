@@ -11,8 +11,7 @@ import lombok.Setter;
 public class UserDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_detail_id")
-    private Long userDetailId;
+    private Long id;
     @Column
     private String phone;
     @Column

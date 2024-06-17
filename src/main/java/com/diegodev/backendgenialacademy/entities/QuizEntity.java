@@ -13,12 +13,9 @@ import java.util.List;
 public class QuizEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "quiz_id")
-    private Long quizId;
+    private Long id;
     @Column
-    private String title;
-    @Column
-    private String content;
+    private String question;
     @ManyToOne
     @JoinColumn(name = "topic_id")
     private TopicEntity topic;

@@ -1,8 +1,7 @@
 package com.diegodev.backendgenialacademy.services;
 
-import com.diegodev.backendgenialacademy.dtos.StudyPlanDTO;
-import com.diegodev.backendgenialacademy.entities.StudyPlanEntity;
+import com.diegodev.backendgenialacademy.dtos.responses.StudyPlanRes;
 
 public interface StudyPlanService {
-    StudyPlanDTO createStudyPlan(StudyPlanDTO studyPlanDTO);
+    StudyPlanRes createStudyPlan(StudyPlanRes studyPlanRes);
 }

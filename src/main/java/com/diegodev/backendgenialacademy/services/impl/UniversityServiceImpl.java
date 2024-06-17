@@ -1,6 +1,7 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.UniversityDTO;
+import com.diegodev.backendgenialacademy.dtos.requests.UniversityReq;
+import com.diegodev.backendgenialacademy.dtos.responses.UniversityRes;
 import com.diegodev.backendgenialacademy.entities.UniversityEntity;
 import com.diegodev.backendgenialacademy.repositories.UniversityRepository;
 import com.diegodev.backendgenialacademy.services.UniversityService;
@@ -18,29 +19,29 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public UniversityEntity create(UniversityDTO universityDTO) {
+    public UniversityRes create(UniversityReq universityReq) {
         UniversityEntity universityEntity = new UniversityEntity();
-        universityEntity.setName(universityDTO.name());
-        universityEntity.setAcronym(universityDTO.acronym());
-        universityEntity.setType(universityDTO.type());
-        universityEntity.setWebsite(universityDTO.website());
-        universityEntity.setImgUrl(universityDTO.imgUrl());
-        return universityRepository.save(universityEntity);
+        universityEntity.setName(universityReq.name());
+        universityEntity.setAcronym(universityReq.acronym());
+        universityEntity.setType(universityReq.type());
+        universityEntity.setWebsite(universityReq.website());
+        universityEntity.setImgUrl(universityReq.imgUrl());
+        return mapToDTO(universityRepository.save(universityEntity));
     }
 
     @Override
-    public UniversityEntity findById(Long id){
-        return universityRepository.findById(id).orElse(null);
+    public UniversityRes findById(Long id){
+        return mapToDTO(universityRepository.findById(id).orElseThrow());
     }
 
     @Override
-    public List<UniversityDTO> findAll(){
+    public List<UniversityRes> findAll(){
         return universityRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
-    public UniversityDTO mapToDTO(UniversityEntity entity) {
-        return new UniversityDTO(
-                entity.getUniversityId(),
+    public UniversityRes mapToDTO(UniversityEntity entity) {
+        return new UniversityRes(
+                entity.getId(),
                 entity.getName(),
                 entity.getAcronym(),
                 entity.getType(),

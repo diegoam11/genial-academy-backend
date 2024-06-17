@@ -4,5 +4,5 @@ import com.diegodev.backendgenialacademy.entities.UserDetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDetailRepository extends JpaRepository<UserDetailEntity, Long> {
-    UserDetailEntity findByUser_UserId(Long userId);
+    UserDetailEntity findByUserId(Long userId);
 }

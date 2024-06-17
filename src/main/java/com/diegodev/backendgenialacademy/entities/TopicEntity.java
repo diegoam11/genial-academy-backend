@@ -11,8 +11,7 @@ import lombok.Setter;
 public class TopicEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "topic_id")
-    private Long topicId;
+    private Long id;
     @Column
     private String name;
     @ManyToOne

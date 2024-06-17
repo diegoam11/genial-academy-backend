@@ -1,10 +1,9 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.UserDTO;
-import com.diegodev.backendgenialacademy.dtos.UserLogin;
-import com.diegodev.backendgenialacademy.dtos.UserRequest;
+import com.diegodev.backendgenialacademy.dtos.responses.UserRes;
+import com.diegodev.backendgenialacademy.dtos.requests.UserLoginReq;
+import com.diegodev.backendgenialacademy.dtos.requests.UserReq;
 import com.diegodev.backendgenialacademy.entities.UserEntity;
-import com.diegodev.backendgenialacademy.exceptions.AuthenticationException;
 import com.diegodev.backendgenialacademy.repositories.UserRepository;
 import com.diegodev.backendgenialacademy.services.UserService;
 import org.springframework.stereotype.Service;
@@ -20,22 +19,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO findByUsername(String username) {
-        UserEntity userFound = userRepository.findByUsername(username);
-        return new UserDTO(
-                userFound.getUserId(),
-                userFound.getName(),
-                userFound.getLastname(),
-                userFound.getUsername(),
-                userFound.getEmail()
-        );
+    public UserRes findByUsername(String username) {
+        return null;
     }
 
     @Override
-    public UserDTO createUser(UserRequest userRequest) {
-        UserEntity savedUser = userRepository.save(mapReqToEntity(userRequest));
-        return new UserDTO(
-                savedUser.getUserId(),
+    public UserRes createUser(UserReq userReq) {
+        UserEntity savedUser = userRepository.save(mapReqToEntity(userReq));
+        return new UserRes(
+                savedUser.getId(),
                 savedUser.getName(),
                 savedUser.getLastname(),
                 savedUser.getUsername(),
@@ -44,22 +36,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserLogin userLogin(UserLogin userLogin) {
-        UserEntity userEntity = userRepository.findByUsername(userLogin.username());
-        if (userEntity == null || !userEntity.getPassword().equals(userLogin.password())) {
-            throw new AuthenticationException("Invalid username or password");
-        }
-        return userLogin;
+    public UserLoginReq userLogin(UserLoginReq userLoginReq) {
+        return null;
     }
 
-
-    public UserEntity mapReqToEntity(UserRequest userRequest) {
+    public UserEntity mapReqToEntity(UserReq userReq) {
         UserEntity userEntity = new UserEntity();
-        userEntity.setName(userRequest.name());
-        userEntity.setLastname(userRequest.lastname());
-        userEntity.setUsername(userRequest.username());
-        userEntity.setEmail(userRequest.email());
-        userEntity.setPassword(userRequest.password());
+        userEntity.setName(userReq.name());
+        userEntity.setLastname(userReq.lastname());
+        userEntity.setUsername(userReq.username());
+        userEntity.setEmail(userReq.email());
+        userEntity.setPassword(userReq.password());
         return userEntity;
     }
 }

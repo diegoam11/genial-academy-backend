@@ -1,7 +1,6 @@
 package com.diegodev.backendgenialacademy.controllers;
 
-import com.diegodev.backendgenialacademy.dtos.CareerDTO;
-import com.diegodev.backendgenialacademy.entities.CareerEntity;
+import com.diegodev.backendgenialacademy.dtos.responses.CareerRes;
 import com.diegodev.backendgenialacademy.services.CareerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +16,12 @@ public class CareerController {
     }
 
     @GetMapping("/findAll")
-    public List<CareerDTO> findAll() {
+    public List<CareerRes> findAll() {
         return careerService.findAll();
     }
 
     @PostMapping("/create")
-    public CareerDTO create(@RequestBody CareerDTO careerDTO) {
-        return careerService.create(careerDTO);
+    public CareerRes create(@RequestBody CareerRes careerRes) {
+        return careerService.create(careerRes);
     }
 }

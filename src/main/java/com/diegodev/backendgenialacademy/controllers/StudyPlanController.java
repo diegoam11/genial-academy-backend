@@ -1,6 +1,6 @@
 package com.diegodev.backendgenialacademy.controllers;
 
-import com.diegodev.backendgenialacademy.dtos.StudyPlanDTO;
+import com.diegodev.backendgenialacademy.dtos.responses.StudyPlanRes;
 import com.diegodev.backendgenialacademy.services.StudyPlanService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class StudyPlanController {
     }
 
     @PostMapping("/create")
-    public StudyPlanDTO createStudyPlan(@RequestBody StudyPlanDTO studyPlanDTO) {
-        return studyPlanService.createStudyPlan(studyPlanDTO);
+    public StudyPlanRes createStudyPlan(@RequestBody StudyPlanRes studyPlanRes) {
+        return studyPlanService.createStudyPlan(studyPlanRes);
     }
 }

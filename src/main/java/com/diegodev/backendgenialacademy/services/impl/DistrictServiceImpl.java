@@ -18,6 +18,6 @@ public class DistrictServiceImpl implements DistrictService {
 
     @Override
     public List<DistrictEntity> getAllByProvinceId(Long provinceId) {
-        return districtRepository.findAllByProvince_ProvinceId(provinceId);
+        return districtRepository.findAllByProvinceId(provinceId);
     }
 }

@@ -1,6 +1,6 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.CourseDTO;
+import com.diegodev.backendgenialacademy.dtos.responses.CourseRes;
 import com.diegodev.backendgenialacademy.entities.CourseEntity;
 import com.diegodev.backendgenialacademy.entities.StudyPlanEntity;
 import com.diegodev.backendgenialacademy.repositories.CourseRepository;
@@ -23,12 +23,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<CourseDTO> findAll() {
+    public List<CourseRes> findAll() {
         return courseRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
     @Override
-    public CourseDTO create(CourseDTO course) {
+    public CourseRes create(CourseRes course) {
         CourseEntity courseEntity = new CourseEntity();
         courseEntity.setName(course.name());
         courseEntity.setDescription(course.description());
@@ -37,11 +37,11 @@ public class CourseServiceImpl implements CourseService {
         return mapToDTO(courseRepository.save(courseEntity));
     }
 
-    public CourseDTO mapToDTO(CourseEntity entity) {
-        return new CourseDTO(
+    public CourseRes mapToDTO(CourseEntity entity) {
+        return new CourseRes(
                 entity.getName(),
                 entity.getDescription(),
-                entity.getStudyPlan().getStudyPlanId()
+                entity.getStudyPlan().getId()
         );
     }
 }

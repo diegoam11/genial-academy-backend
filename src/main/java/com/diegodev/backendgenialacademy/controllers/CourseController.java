@@ -1,6 +1,6 @@
 package com.diegodev.backendgenialacademy.controllers;
 
-import com.diegodev.backendgenialacademy.dtos.CourseDTO;
+import com.diegodev.backendgenialacademy.dtos.responses.CourseRes;
 import com.diegodev.backendgenialacademy.services.CourseService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +17,12 @@ public class CourseController {
     }
 
     @GetMapping("/findAll")
-    public List<CourseDTO> getAllCourses(){
+    public List<CourseRes> getAllCourses(){
         return courseService.findAll();
     }
     
     @PostMapping("/create")
-    public CourseDTO create(@RequestBody CourseDTO course){
+    public CourseRes create(@RequestBody CourseRes course){
         return courseService.create(course);
     }
 }

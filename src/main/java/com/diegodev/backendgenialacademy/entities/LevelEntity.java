@@ -13,8 +13,7 @@ import java.util.List;
 public class LevelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "level_id")
-    private int levelId;
+    private Long id;
     @Column
     private Character level;
     @Column

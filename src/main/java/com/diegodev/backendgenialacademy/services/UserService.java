@@ -1,12 +1,11 @@
 package com.diegodev.backendgenialacademy.services;
 
-import com.diegodev.backendgenialacademy.dtos.UserDTO;
-import com.diegodev.backendgenialacademy.dtos.UserLogin;
-import com.diegodev.backendgenialacademy.dtos.UserRequest;
-import com.diegodev.backendgenialacademy.entities.UserEntity;
+import com.diegodev.backendgenialacademy.dtos.responses.UserRes;
+import com.diegodev.backendgenialacademy.dtos.requests.UserLoginReq;
+import com.diegodev.backendgenialacademy.dtos.requests.UserReq;
 
 public interface UserService {
-    UserDTO findByUsername(String username);
-    UserDTO createUser(UserRequest userRequest);
-    UserLogin userLogin(UserLogin userLogin);
+    UserRes findByUsername(String username);
+    UserRes createUser(UserReq userReq);
+    UserLoginReq userLogin(UserLoginReq userLoginReq);
 }

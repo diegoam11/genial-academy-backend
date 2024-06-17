@@ -1,6 +1,6 @@
 package com.diegodev.backendgenialacademy.services.impl;
 
-import com.diegodev.backendgenialacademy.dtos.CareerDTO;
+import com.diegodev.backendgenialacademy.dtos.responses.CareerRes;
 import com.diegodev.backendgenialacademy.entities.CareerEntity;
 import com.diegodev.backendgenialacademy.entities.UniversityEntity;
 import com.diegodev.backendgenialacademy.repositories.CareerRepository;
@@ -22,24 +22,24 @@ public class CareerServiceImpl implements CareerService {
     }
 
     @Override
-    public List<CareerDTO> findAll() {
+    public List<CareerRes> findAll() {
         return careerRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
     @Override
-    public CareerDTO create(CareerDTO careerDTO) {
+    public CareerRes create(CareerRes careerRes) {
         CareerEntity careerEntity = new CareerEntity();
-        careerEntity.setName(careerDTO.name());
-        UniversityEntity university = universityRepository.findById(careerDTO.universityId()).orElseThrow();
+        careerEntity.setName(careerRes.name());
+        UniversityEntity university = universityRepository.findById(careerRes.universityId()).orElseThrow();
         careerEntity.setUniversity(university);
         return mapToDTO(careerRepository.save(careerEntity));
     }
 
-    public CareerDTO mapToDTO(CareerEntity entity) {
-        return new CareerDTO(
-                entity.getCareerId(),
+    public CareerRes mapToDTO(CareerEntity entity) {
+        return new CareerRes(
+                entity.getId(),
                 entity.getName(),
-                entity.getUniversity().getUniversityId()
+                entity.getUniversity().getId()
         );
     }
 }

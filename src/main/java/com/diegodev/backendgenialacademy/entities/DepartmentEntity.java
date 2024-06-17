@@ -14,8 +14,7 @@ import java.util.List;
 public class DepartmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "department_id")
-    private Long departmentId;
+    private Long id;
     @Column
     private String name;
     @JsonIgnore
