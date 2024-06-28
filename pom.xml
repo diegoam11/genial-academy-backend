@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.diegodev</groupId>
     <artifactId>backend-genial-academy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>backend-genial-academy</name>
     <description>backend-genial-academy</description>
     <properties>

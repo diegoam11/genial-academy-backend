@@ -20,7 +20,7 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
 # Copia el archivo JAR generado desde la etapa de construcción
-COPY --from=build /app/target/backend-genial-academy.jar app.jar
+COPY --from=build /app/target/backend-genial-academy-1.jar app.jar
 
 # Define el comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
