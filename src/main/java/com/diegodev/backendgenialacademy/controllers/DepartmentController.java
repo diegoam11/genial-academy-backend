@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/departments")
+@CrossOrigin
 public class DepartmentController {
 
     private final DepartmentService departmentService;

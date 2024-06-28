@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/study_plan")
+@CrossOrigin
 public class StudyPlanController {
 
     private final StudyPlanService studyPlanService;

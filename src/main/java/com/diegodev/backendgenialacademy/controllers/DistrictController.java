@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/districs")
+@CrossOrigin
 public class DistrictController {
 
     private final DistrictService districtService;

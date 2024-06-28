@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/provinces")
+@CrossOrigin
 public class ProvinceController {
 
     private final ProvinceService provinceService;

@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/careers")
+@CrossOrigin
 public class CareerController {
     private final CareerService careerService;
 
