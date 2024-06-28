@@ -1,8 +1,8 @@
 package com.diegodev.backendgenialacademy.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Date;
@@ -11,22 +11,20 @@ import java.util.Date;
 public class HandlerExceptionController {
 
     @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Error userNotFound(Exception ex){
+    public ResponseEntity<Error> userNotFound(Exception ex){
         Error error = new Error();
         error.setMessage(ex.getMessage());
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setDate(new Date());
-        return error;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    @ExceptionHandler(WrongPasswordException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public Error wrongPassword(Exception ex){
+    @ExceptionHandler(RequestException.class)
+    public ResponseEntity<Error> requestExceptionHandler(RequestException ex){
         Error error = new Error();
         error.setMessage(ex.getMessage());
-        error.setStatus(HttpStatus.UNAUTHORIZED.value());
+        error.setStatus(ex.getStatus().value());
         error.setDate(new Date());
-        return error;
+        return new ResponseEntity<>(error, ex.getStatus());
     }
 }

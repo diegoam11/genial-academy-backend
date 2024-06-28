@@ -17,7 +17,7 @@ public class CourseController {
     }
 
     @GetMapping("/findAll")
-    public List<CourseRes> getAllCourses(){
+    public List<CourseRes> findAll(){
         return courseService.findAll();
     }
     

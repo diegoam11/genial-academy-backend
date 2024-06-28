@@ -32,10 +32,8 @@ public class AuthService {
         user.setUsername(request.username());
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.password()));
-
         user.setRole(request.role());
         user = userRepository.save(user);
-
         String token = jwtService.generateToken(user);
         return new AuthRes(token);
     }
@@ -49,7 +47,6 @@ public class AuthService {
         );
         UserEntity user = userRepository.findByUsername(request.username()).orElseThrow();
         String token = jwtService.generateToken(user);
-
         return new AuthRes(token);
     }
 }

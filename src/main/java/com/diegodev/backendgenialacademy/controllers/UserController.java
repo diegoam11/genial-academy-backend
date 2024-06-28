@@ -4,11 +4,11 @@ import com.diegodev.backendgenialacademy.dtos.responses.UserRes;
 import com.diegodev.backendgenialacademy.dtos.responses.UserDetailRes;
 import com.diegodev.backendgenialacademy.dtos.requests.UserReq;
 import com.diegodev.backendgenialacademy.entities.UserDetailEntity;
-import com.diegodev.backendgenialacademy.exceptions.AuthenticationException;
+import com.diegodev.backendgenialacademy.exceptions.UserNotFoundException;
 import com.diegodev.backendgenialacademy.services.UserService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -27,7 +27,11 @@ public class UserController {
 
     @GetMapping("/findByUsername/{username}")
     public UserRes findById(@PathVariable String username) {
-        return userService.findByUsername(username);
+        Optional<UserRes> user = userService.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found.");
+        }
+        return user.get();
     }
 
     @GetMapping("/detail/{userId}")
@@ -38,10 +42,5 @@ public class UserController {
     @PostMapping("/addDetail")
     public UserDetailEntity addDetail(@RequestBody UserDetailRes userDetailRes) {
         return null;
-    }
-
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }
