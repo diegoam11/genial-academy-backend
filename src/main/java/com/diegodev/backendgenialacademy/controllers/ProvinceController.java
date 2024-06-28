@@ -2,10 +2,7 @@ package com.diegodev.backendgenialacademy.controllers;
 
 import com.diegodev.backendgenialacademy.entities.ProvinceEntity;
 import com.diegodev.backendgenialacademy.services.ProvinceService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

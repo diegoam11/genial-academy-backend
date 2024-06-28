@@ -2,9 +2,7 @@ package com.diegodev.backendgenialacademy.controllers;
 
 import com.diegodev.backendgenialacademy.entities.DepartmentEntity;
 import com.diegodev.backendgenialacademy.services.DepartmentService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/departments")
