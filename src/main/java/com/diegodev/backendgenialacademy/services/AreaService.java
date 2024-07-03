@@ -8,4 +8,5 @@ import java.util.List;
 public interface AreaService {
     AreaRes create(AreaReq areaReq);
     List<AreaRes> findAll();
+    List<AreaRes> findByUniId(Long id);
 }

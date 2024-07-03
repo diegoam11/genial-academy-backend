@@ -28,4 +28,8 @@ public class AreaController {
         return areaService.findAll();
     }
 
+    @GetMapping("/findByUniId/{id}")
+    public List<AreaRes> findByUniversityId(@PathVariable Long id) {
+        return areaService.findByUniId(id);
+    }
 }

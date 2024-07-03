@@ -39,6 +39,11 @@ public class AreaServiceImpl implements AreaService {
         return areaRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public List<AreaRes> findByUniId(Long id) {
+        return areaRepository.findByUniversityId(id).stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
     public AreaRes mapToDTO(AreaEntity entity) {
         return new AreaRes(
                 entity.getId(),
