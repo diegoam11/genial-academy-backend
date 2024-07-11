@@ -39,6 +39,7 @@ public class CourseServiceImpl implements CourseService {
 
     public CourseRes mapToDTO(CourseEntity entity) {
         return new CourseRes(
+                entity.getId(),
                 entity.getName(),
                 entity.getDescription(),
                 entity.getStudyPlan().getId()
