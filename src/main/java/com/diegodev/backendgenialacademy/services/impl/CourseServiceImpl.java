@@ -24,6 +24,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseRes> findAll() {
+        // add code
         return courseRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
