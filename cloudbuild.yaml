@@ -21,12 +21,8 @@ steps:
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
-      # AQUI ESTÁ LA MAGIA:
-      # 1. Variables normales (Perfil y Usuario)
       - '--set-env-vars'
       - 'SPRING_PROFILES_ACTIVE=dev,CLOUD_SQL_USERNAME=genialacademy-user'
-      # 2. Secretos (La contraseña viene de la bóveda)
-      # Sintaxis: NOMBRE_VAR_EN_APP=NOMBRE_SECRETO_EN_GCP:VERSION
       - '--set-secrets'
       - 'CLOUD_SQL_PASSWORD=db-password-genial-academy-dev:latest'
       # Conexión DB
