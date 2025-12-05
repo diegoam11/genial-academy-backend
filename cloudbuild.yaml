@@ -1,13 +1,13 @@
 steps:
   # 1. Compilar y crear imagen Docker
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA', '-f', 'Dockerfile', '.']
 
   # 2. Subir imagen a Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA']
 
-  # 3. Desplegar en Cloud Run
+  # 3. Desplegar en Cloud Run con Secretos Automáticos
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -21,8 +21,15 @@ steps:
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
+      # AQUI ESTÁ LA MAGIA:
+      # 1. Variables normales (Perfil y Usuario)
       - '--set-env-vars'
-      - 'SPRING_PROFILES_ACTIVE=dev'
+      - 'SPRING_PROFILES_ACTIVE=dev,CLOUD_SQL_USERNAME=genialacademy-user'
+      # 2. Secretos (La contraseña viene de la bóveda)
+      # Sintaxis: NOMBRE_VAR_EN_APP=NOMBRE_SECRETO_EN_GCP:VERSION
+      - '--set-secrets'
+      - 'CLOUD_SQL_PASSWORD=db-password-genial-academy-dev:latest'
+      # Conexión DB
       - '--add-cloudsql-instances'
       - 'advance-engine-480221-i0:us-central1:its-dev-mysql'
 
