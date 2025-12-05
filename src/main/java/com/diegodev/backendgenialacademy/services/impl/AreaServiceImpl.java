@@ -25,6 +25,7 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public AreaRes create(AreaReq areaReq) {
+        // hola
         AreaEntity areaEntity = new AreaEntity();
         areaEntity.setName(areaReq.name());
         areaEntity.setCodArea(areaReq.codArea());
