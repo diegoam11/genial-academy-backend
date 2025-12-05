@@ -1,26 +1,13 @@
-# Etapa de construcción
-FROM ubuntu:latest AS build
-
-# Instala Maven y JDK en la imagen base
-RUN apt-get update && apt-get install -y openjdk-17-jdk maven
-
-# Crea un directorio para la aplicación
+# Etapa 1: Construcción (Build)
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-
-# Copia los archivos de la aplicación al directorio de trabajo
-COPY . .
-
-# Compila y empaqueta la aplicación usando Maven
+COPY pom.xml .
+COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Etapa de ejecución
-FROM openjdk:17-jdk-slim
-
-# Exponer el puerto 8080 para la API
+# Etapa 2: Ejecución (Run)
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Copia el archivo JAR generado desde la etapa de construcción
-COPY --from=build /app/target/backend-genial-academy-1.jar app.jar
-
-# Define el comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]

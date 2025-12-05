@@ -1,0 +1,27 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'backend-genial-academy'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars'
+      - 'SPRING_PROFILES_ACTIVE=dev'
+      - '--add-cloudsql-instances'
+      - 'advance-engine-480221-i0:us-central1:its-dev-mysql'
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/ar-api-genial-academy-dev/api-genial-academy:$COMMIT_SHA'
